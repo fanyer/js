@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+	<title></title>
+<style type="text/css">.multi-image {
+	width:480px
+}
+.multi-image .image-wrap {
+	width:480px;
+	position:relative
+}
+.multi-image .image-wrap .image {
+	width:100%;
+	height:260px;
+	display:block
+}
+.multi-image .image-wrap .description {
+	width:440px;
+	padding:0 20px;
+	color:#fff;
+	line-height:32px;
+	display:block;
+	position:absolute;
+	bottom:0;
+	background:rgba(0,0,0,.7)
+}
+.multi-image .image-wrap .arrWrapLeft,.multi-image .image-wrap .arrWrapRight {
+	width:35px;
+	height:50px;
+	background:#000;
+	filter:alpha(opacity=30);
+	-moz-opacity:.3;
+	opacity:.3;
+	cursor:pointer;
+	position:absolute;
+	top:105px
+}
+.multi-image .image-wrap .arrWrapLeft:hover,.multi-image .image-wrap .arrWrapRight:hover {
+	filter:alpha(opacity=60);
+	-moz-opacity:.6;
+	opacity:.6
+}
+.multi-image .image-wrap .arrWrapLeft {
+	left:0
+}
+.multi-image .image-wrap .arrWrapRight {
+	right:0
+}
+.multi-image .image-wrap .arrow-left,.multi-image .image-wrap .arrow-right {
+	display:block;
+	position:absolute;
+	width:15px;
+	height:28px;
+	top:11px;
+	left:10px
+}
+.multi-image .image-wrap .arrow-right {
+	background:url(http://baike.bdimg.com/static/wiki-lemma/widget/lemma_content/configModule/specialTopic/multiImage/img/arrowRight_1818aa5.png) no-repeat 0 0;
+	right:10px
+}
+.multi-image .image-wrap .arrow-left {
+	background:url(http://baike.bdimg.com/static/wiki-lemma/widget/lemma_content/configModule/specialTopic/multiImage/img/arrowLeft_8c59be0.png) no-repeat 0 0;
+	left:10px
+}
+.multi-image .thumbnail-list {
+	width:480px;
+	height:62px;
+	margin-top:8px;
+	overflow:hidden
+}
+.multi-image .thumbnail-list .thumbnail-scroller {
+	display:block;
+	height:62px
+}
+.multi-image .thumbnail-list .thumbnail-scroller .thumbnail {
+	display:block;
+	width:114px;
+	height:62px;
+	float:left;
+	margin-right:8px;
+	cursor:pointer;
+	overflow:hidden;
+	position:relative;
+	transition:opacity .5s;
+	-moz-transition:opacity .5s;
+	-webkit-transition:opacity .5s;
+	-o-transition:opacity .5s
+}
+.multi-image .thumbnail-list .thumbnail-scroller .thumbnail img {
+	position:absolute;
+	width:114px
+}
+.multi-image .thumbnail-list .thumbnail-scroller .thumbnail:hover {
+	opacity:.7
+}
+.multi-image .thumbnail-list .thumbnail-scroller .thumbnail.last {
+	margin-right:0
+}
+.multi-image .thumbnail-list .thumbnail-scroller .thumbnail.current .thumbnail-border {
+	display:block
+}
+.multi-image .thumbnail-list .thumbnail-scroller .thumbnail .thumbnail-border {
+	position:absolute;
+	top:0;
+	left:0;
+	display:none;
+	width:110px;
+	height:58px;
+	border:2px solid #409fff
+}
+
+</style>
+
+
+	<style type="text/css">
+	.special-topic {
+	width:790px;
+	height:468px;
+	margin:35px 0;
+	padding-bottom:10px;
+	overflow:hidden;
+	font-family:'microsoft Yahei',simHei,sans-serif;
+	background:#fcfcfc
+}
+.special-topic .tab-list {
+	font-size:14px;
+	color:#333;
+	height:37px;
+	position:relative
+}
+.special-topic .tab-list .border-bottom {
+	position:absolute;
+	bottom:0;
+	display:block;
+	clear:both;
+	height:1px;
+	width:100%;
+	background:#d0d4d9
+}
+.special-topic .tab-list .tab-item {
+	position:relative;
+	z-index:0;
+	float:left;
+	cursor:pointer;
+	text-align:center;
+	background:#f7f7f7;
+	height:35px;
+	line-height:35px;
+	border-left:1px solid #f7f7f7;
+	border-right:1px solid #f7f7f7;
+	border-top:2px solid #f7f7f7
+}
+.special-topic .tab-list .tab-item.hasbg {
+	border:0!important;
+	height:37px;
+	line-height:37px
+}
+.special-topic .tab-list .tab-item.hideInterval .interval {
+	display:none
+}
+.special-topic .tab-list .tab-item.selected {
+	border-left:1px solid #d0d4d9;
+	border-right:1px solid #d0d4d9;
+	border-top:2px solid #519cea;
+	background:#fcfcfc;
+	color:#136ec2;
+	z-index:1
+}
+.special-topic .tab-list .tab-item.selected.first {
+	border-left:1px solid #f7f7f7
+}
+.special-topic .tab-list .tab-item.selected.last {
+	border-right:1px solid #f7f7f7
+}
+.special-topic .tab-list .tab-item.selected .interval {
+	display:none
+}
+.special-topic .tab-list .tab-item.last .interval {
+	display:none
+}
+.special-topic .tab-list .tab-item .interval {
+	display:block;
+	width:1px;
+	position:absolute;
+	background:#d3d3d3;
+	height:12px;
+	top:11px;
+	right:0
+}
+.special-topic .tab-content {
+	clear:both;
+	height:385px;
+	overflow:hidden;
+	background:#fcfcfc
+}
+.special-topic .tab-content .main-content-wrapper {
+	margin-left:30px;
+	float:left;
+	width:480px;
+	line-height:24px;
+	overflow:hidden
+}
+.special-topic .tab-content .main-content-wrapper .title {
+	margin-top:23px;
+	font-size:14px;
+	font-weight:700;
+	color:#323232;
+	display:block;
+	width:100%;
+	height:14px;
+	padding-left:10px;
+	border-left:3px solid #519cea;
+	line-height:14px;
+	margin-bottom:13px
+}
+.special-topic .tab-content .related-content {
+	float:left;
+	margin-top:20px;
+	margin-left:40px;
+	margin-right:30px;
+	width:210px;
+	height:385px;
+	overflow:hidden;
+	font-family:SimSun;
+	font-size:12px;
+	line-height:24px
+}
+.special-topic .tab-content .related-content .related-aricle {
+	width:100%
+}
+.special-topic .tab-content .related-content .related-aricle .related-title {
+	display:block;
+	width:100%;
+	color:#545454;
+	font-weight:700
+}
+.special-topic .tab-content .related-content .related-aricle .more-link {
+	font-size:12px;
+	color:#136ec2;
+	display:block;
+	float:right;
+	text-decoration:none;
+	font-weight:400;
+	top:0
+}
+.special-topic .tab-content .related-content .related-aricle .more-link:hover {
+	text-decoration:underline
+}
+.special-topic .tab-content .related-content .related-aricle .related-description {
+	display:block;
+	color:#666;
+	width:100%;
+	margin-bottom:20px
+}
+.special-topic .tab-content .related-content .related-lemma {
+	width:100%;
+	padding-top:18px;
+	border-top:1px dashed #b3b3b3
+}
+.special-topic .tab-content .related-content .related-lemma .related-lemma-title {
+	color:#333;
+	font-weight:700
+}
+.special-topic .tab-content .related-content .related-lemma .lemma-item {
+	color:#136ec2;
+	float:left;
+	cursor:pointer;
+	text-decoration:none;
+	margin-right:16px
+}
+.special-topic .tab-content .related-content .related-lemma .lemma-item:hover {
+	text-decoration:underline
+}
+.special-topic .specail-footer {
+	margin-top:25px;
+	height:31px;
+	line-height:30px;
+	width:100%;
+	font-family:simSum;
+	font-size:12px;
+	color:#999;
+	text-align:right;
+	clear:both;
+	border-top:1px solid #ebebeb;
+	background:#fff
+}
+.special-topic .specail-footer .supply-image-link img {
+	vertical-align:bottom
+}
+.special-topic .specail-footer .supply-text {
+	height:30px;
+	display:inline-block;
+	line-height:48px;
+	vertical-align:bottom
+}
+.special-topic .specail-footer .supply-text-link {
+	text-decoration:none
+}
+.special-topic .specail-footer .supply-text-link:hover {
+	text-decoration:underline
+}
+</style>
+<link rel="stylesheet" type="text/css" href="http://baike.bdimg.com/static/wiki-common/pkg/wiki-common-base_b9f9e56.css"/>
+</head>
+<body>
+
+<div class="special-topic" style="border-top:1px solid #ebebeb;height:442px;padding-bottom:0px;">
+
+<div class="tab-content j-tab-content0" style=" ">
+
+<div class="main-content-wrapper">
+		<span class="title">表情出处知多少</span>
+
+		<div class="multi-image multi-image-index-0">
+				<div class="image-wrap">
+					<a class="imgae-wrap-link" href="javascript:;" target="_blank" style="cursor: default;">
+						<img class="image" src="http://g.hiphotos.baidu.com/baike/w%3D480/sign=f823ea3ab61c8701d6b6b3ee177e9e6e/4e4a20a4462309f74602f9cc770e0cf3d6cad6fb.jpg">
+						</a>
+						<span class="description">张学友这一经典表情出自电影《旺角卡门》</span>
+
+					<div class="arrWrapLeft">
+						<a class="arrow-left" href="javascript:void(0);"></a>
+					</div>
+
+					<div class="arrWrapRight" style="display: none;">
+						<a class="arrow-right" href="javascript:void(0);"></a>
+					</div>
+				</div>
+
+
+				<div class="thumbnail-list">
+					<ul class="thumbnail-scroller" style="width: 862px;">
+						<li class="thumbnail  first" data-large="http://g.hiphotos.baidu.com/baike/w%3D480/sign=fe3f240251e736d158138d00ab514ffc/9d82d158ccbf6c81c63b4636b93eb13532fa40db.jpg" data-desc="表情三巨头扛起了表情界半边天" data-link="">
+						<img src="http://g.hiphotos.baidu.com/baike/w%3D114/sign=3ddd0b0933d12f2ece05aa617bc3d5ff/9d82d158ccbf6c81c63b4636b93eb13532fa40db.jpg">
+						<em class="thumbnail-border"></em>
+						</li>
+						<li class="thumbnail  first" data-large="http://d.hiphotos.baidu.com/baike/w%3D480/sign=d767cb00f51f3a295ac8d4c6a924bce3/7e3e6709c93d70cf60f4c0d3fddcd100bba12be5.jpg" data-desc="影片《金馆长对金馆长对金馆长》中，崔成国妩媚一笑" data-link="">
+						<img src="http://d.hiphotos.baidu.com/baike/w%3D114/sign=cfddaff13f292df597c3a81488305ce2/7e3e6709c93d70cf60f4c0d3fddcd100bba12be5.jpg">
+						<em class="thumbnail-border"></em>
+						</li>
+						<li class="thumbnail  first" data-large="http://b.hiphotos.baidu.com/baike/w%3D480/sign=28cf9612c6cec3fd8b3ea67de68ad4b6/a50f4bfbfbedab649292261ef236afc378311e0f.jpg" data-desc="兵库北的微笑源于花泽的一次采访" data-link="">
+						<img src="http://b.hiphotos.baidu.com/baike/w%3D114/sign=59219d20c6fdfc03e578e7b9e03d87a9/a50f4bfbfbedab649292261ef236afc378311e0f.jpg">
+						<em class="thumbnail-border"></em>
+						</li>
+						<li class="thumbnail  first" data-large="http://f.hiphotos.baidu.com/baike/w%3D480/sign=1fc7b6be302ac65c6705677bcbf3b21d/d4628535e5dde711b5af2928a2efce1b9c1661ea.jpg" data-desc="姚明的经典一笑出自2009年火箭晋级西部半决赛的采访上" data-link="">
+						<img src="http://f.hiphotos.baidu.com/baike/w%3D114/sign=cc106ac4c35c1038247ecac38610931c/d4628535e5dde711b5af2928a2efce1b9c1661ea.jpg">
+						<em class="thumbnail-border"></em>
+						</li>
+						<li class="thumbnail  first" data-large="http://d.hiphotos.baidu.com/baike/w%3D480/sign=9542651d3f87e9504217f2642039531b/9a504fc2d5628535c69fb8ff95ef76c6a6ef63f4.jpg" data-desc="Doge自2013年开始流行于网络，之后更是被很多人PS出各种网络表情图片。" data-link="">
+						<img src="http://d.hiphotos.baidu.com/baike/w%3D114/sign=19b16569ec50352ab16121096742fb1a/9a504fc2d5628535c69fb8ff95ef76c6a6ef63f4.jpg">
+						<em class="thumbnail-border"></em>
+						</li>
+						<li class="thumbnail  first" data-large="http://d.hiphotos.baidu.com/baike/w%3D480/sign=459c561995529822053338cbe7c87b3b/b3119313b07eca8066875339942397dda0448369.jpg" data-desc="2006年GA叔把自己喝水的视频上传到了网上，迅速受到网友们追捧。" data-link="">
+						<img src="http://d.hiphotos.baidu.com/baike/w%3D114/sign=0a48cfbc9d22720e7bcee6fb4fc90a3a/b3119313b07eca8066875339942397dda0448369.jpg">
+						<em class="thumbnail-border"></em>
+						</li>
+						<li class="thumbnail  first current" data-large="http://g.hiphotos.baidu.com/baike/w%3D480/sign=f823ea3ab61c8701d6b6b3ee177e9e6e/4e4a20a4462309f74602f9cc770e0cf3d6cad6fb.jpg" data-desc="张学友这一经典表情出自电影《旺角卡门》" data-link="">
+						<img src="http://g.hiphotos.baidu.com/baike/w%3D114/sign=5d84d2f28201a18bf0eb164eaa2e0761/4e4a20a4462309f74602f9cc770e0cf3d6cad6fb.jpg">
+						<em class="thumbnail-border"></em>
+						</li>
+					</ul>
+				</div>
+		</div>
+</div>
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+</body>
+
+<script type="text/javascript" src="http://baike.bdimg.com/static/wiki-common/pkg/wiki-common_sync_js_0_5fcdd79.js"></script>
+<script type="text/javascript">require.resourceMap({"res":{"wiki-lemma:widget/lemma_content/configModule/specialTopic/multiImage/multiImage.js":{"url":"http://baike.bdimg.com/static/wiki-lemma/widget/lemma_content/configModule/specialTopic/multiImage/multiImage_5c8a457.js","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/lemma_content/configModule/specialTopic/specialTopic.js":{"url":"http://baike.bdimg.com/static/wiki-lemma/widget/lemma_content/configModule/specialTopic/specialTopic_1d6e7fd.js","deps":["wiki-common:widget/lib/jquery/jquery.js"]},"wiki-lemma:widget/lemma_content/mainContent/lemmaRelation/lemmaInsert.js":{"url":"http://baike.bdimg.com/static/wiki-lemma/widget/lemma_content/mainContent/lemmaRelation/lemmaInsert_8f95785.js","pkg":"wiki-lemma:p3"},"wiki-lemma:widget/lemma_content/mainContent/lemmaRelation/tangram.js":{"url":"http://baike.bdimg.com/static/wiki-lemma/widget/lemma_content/mainContent/lemmaRelation/tangram_67429c3.js","pkg":"wiki-lemma:p3"},"wiki-lemma:widget/lemma_content/mainContent/lemmaReference/lemmaReferenceTip/lemmaReferenceTip.js":{"url":"http://baike.bdimg.com/static/wiki-lemma/widget/lemma_content/mainContent/lemmaReference/lemmaReferenceTip/lemmaReferenceTip_98e1259.js","deps":["wiki-common:widget/lib/jquery/jquery.js"]}},"pkg":{"wiki-lemma:p3":{"url":"http://baike.bdimg.com/static/wiki-lemma/pkg/wiki-lemma-module-lemmaRelation_36b8718.js"}}});</script>
+<script type="text/javascript" src="http://baike.bdimg.com/static/wiki-common/pkg/wiki-common_sync_js_1_b0a1b22.js"></script>
+<script type="text/javascript" src="http://baike.bdimg.com/static/wiki-common/pkg/wiki-common_sync_js_2_fd191e6.js"></script>
+<script type="text/javascript" src="http://baike.bdimg.com/static/wiki-common/pkg/wiki-common_sync_js_3_d5fd8f8.js"></script>
+<script type="text/javascript" src="http://baike.bdimg.com/static/wiki-lemma/pkg/wiki-lemma_4f0dedc.js"></script>
+<script type="text/javascript" src="http://baike.bdimg.com/static/wiki-lemma/widget/lemma_content/configModule/specialTopic/multiImage/multiImage_5c8a457.js"></script>
+<script type="text/javascript" src="http://baike.bdimg.com/static/wiki-lemma/widget/lemma_content/configModule/specialTopic/specialTopic_1d6e7fd.js"></script>
+<script type="text/javascript" src="http://baike.bdimg.com/static/wiki-lemma/widget/lemma_content/configModule/zhixin/zhixin_036758d.js"></script>
+<script type="text/javascript">!function(){  var $ = require('wiki-common:widget/lib/jquery/jquery.js'),
+    userbar = require('wiki-common:widget/component/userbar/userbar.js');
+    
+  $(function() {
+    userbar.buildUserbar($('.wgt-userbar'), null);
+  });
+}();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js'),
+      initSearchbar = require('wiki-common:widget/component/searchbar/searchbar.js');  
+    initSearchbar($('.wgt-searchbar-main'));
+  }();
+!function(){  var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+
+  var timer = '';
+
+  $('.wgt-navbar').on('mouseenter', 'dl', function() {
+  clearTimeout(timer);
+  timer = setTimeout(function() {
+  $('.wgt-navbar').addClass('wgt-navbar-hover');
+}, 300);
+}).on('mouseleave', function() {
+clearTimeout(timer);
+$('.wgt-navbar').removeClass('wgt-navbar-hover');
+}).on('click', 'a', function() {
+clearTimeout(timer);
+$('.wgt-navbar').removeClass('wgt-navbar-hover');
+});
+}();
+!function(){            var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+            var rightCheck = require('wiki-lemma:widget/tools/rightCheck/rightCheck.js');
+
+            // 展现策略
+            rightCheck.editView('13136790', function(res) {
+                if (!res.errno) {
+                    if (res.data.edit) {
+                        $('.lemmaWgt-lemmaTitle .add-subLemma').css('display', 'inline-block');
+                        $('.top-tool .add-sub-icon').css('display', 'inline-block');
+                    }
+                } else {
+                    if ('1') {
+                        $('.lemmaWgt-lemmaTitle .add-subLemma').css('display', 'inline-block');
+                        $('.top-tool .add-sub-icon').css('display', 'inline-block');
+                    }
+                }
+            }); 
+
+            require('wiki-lemma:widget/basicElement/addSub/addSub.js')({
+                lemmaId: '13136790',
+                lemmaTitle: 'DOGE',
+                lemmaDesc: '',
+                versionId: '92505537',
+                subLemmaId: '12020926'
+            });
+        }();
+!function(){        var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+        var rightCheck = require('wiki-lemma:widget/tools/rightCheck/rightCheck.js');
+
+        // 展现策略
+        rightCheck.editView('13136790', function(res) {
+            if (!res.errno) {
+                if (res.data.divide) {
+                    $('.top-tool .split-icon').css('display', 'block');
+                }
+            }
+        });
+    }();
+!function(){	require.async("wiki-lemma:widget/basicElement/collect/collect.js",function(collect){
+		collect({
+            newLemmaId:"13136790",
+			lemmaId:"11663024",
+			subLemmaId:"12020926"
+		});
+	});
+}();
+!function(){	require.async("wiki-lemma:widget/basicElement/vote/vote.js",function(vote){
+		vote({
+			lemmaId:"11663024",
+            subLemmaId:"12020926"
+		});
+	});
+}();
+!function(){	!!window.BKShare && window.BKShare.regist({
+		"tag" : "top-share",
+		"bdSize" : 32,
+		"bdMini":1
+	});
+}();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+    var rightCheck = require('wiki-lemma:widget/tools/rightCheck/rightCheck.js');
+
+    // 展现策略
+    rightCheck.editView('13136790', function(res) {
+        if (!res.errno) {
+            if (res.data.edit) {
+                $('.lemmaWgt-lemmaTitle .edit-lemma').css('display', 'inline-block');
+            } else {
+                $('.lemmaWgt-lemmaTitle .lock-lemma').show();
+            }
+        } else {
+            if ('1') {
+                $('.lemmaWgt-lemmaTitle .edit-lemma').css('display', 'inline-block');
+            } else {
+                $('.lemmaWgt-lemmaTitle .lock-lemma').show();
+            }
+        }
+    });
+}();
+!function(){	require.async("wiki-lemma:widget/lemma_content/configModule/specialTopic/multiImage/multiImage.js",function(MultiImage){
+		MultiImage('0');
+	});
+}();
+!function(){		require.async("wiki-lemma:widget/lemma_content/configModule/specialTopic/specialTopic.js",function(SpecialTopic){
+			SpecialTopic();
+		});
+	}();
+!function(){	require.async("wiki-lemma:widget/lemma_content/mainContent/basicInfo/basicInfo.js",function(init){
+		init();
+	});
+}();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+    var rightCheck = require('wiki-lemma:widget/tools/rightCheck/rightCheck.js');
+
+    // 展现策略
+    rightCheck.editView('13136790', function(res) {
+        if (!res.errno) {
+            if (res.data.edit) {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        } else {
+            if ('1') {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        }
+    });
+}();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+    var rightCheck = require('wiki-lemma:widget/tools/rightCheck/rightCheck.js');
+
+    // 展现策略
+    rightCheck.editView('13136790', function(res) {
+        if (!res.errno) {
+            if (res.data.edit) {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        } else {
+            if ('1') {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        }
+    });
+}();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+    var rightCheck = require('wiki-lemma:widget/tools/rightCheck/rightCheck.js');
+
+    // 展现策略
+    rightCheck.editView('13136790', function(res) {
+        if (!res.errno) {
+            if (res.data.edit) {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        } else {
+            if ('1') {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        }
+    });
+}();
+!function(){	require.async(["wiki-common:widget/lib/jquery/jquery.js", "wiki-lemma:widget/lemma_content/mainContent/albumList/albumList.js", "wiki-common:widget/component/nslog/nslog.js"],function($,AlbumList,nslog){
+		var list=new AlbumList({
+			lemmaId:"11663024",
+			subLemmaId:"12020926",
+			data:{"9887564":{"coverpic":"8c1001e93901213f4f26ff9356e736d12f2e956c","desc":"\u539f\u56fe","total":13,"coverurl":"http:\/\/h.hiphotos.baidu.com\/baike\/s%3D235\/sign=9771a152d62a283447a631086eb4c92e\/8c1001e93901213f4f26ff9356e736d12f2e956c.jpg"},"12386018":{"coverpic":"9f510fb30f2442a74cde9978d343ad4bd013021e","desc":"\u5404\u7c7bDOGE\u8868\u60c5","total":24,"coverurl":"http:\/\/f.hiphotos.baidu.com\/baike\/s%3D235\/sign=5cfa2ed36509c93d03f209f4aa3ff8bb\/9f510fb30f2442a74cde9978d343ad4bd013021e.jpg"},"0":{"coverpic":"d53f8794a4c27d1ec572bb5e1dd5ad6edcc438d7","desc":"\u8bcd\u6761\u56fe\u7247","total":3,"coverurl":"http:\/\/h.hiphotos.baidu.com\/baike\/s%3D235\/sign=c66006749a82d158bf825eb2b50b19d5\/d53f8794a4c27d1ec572bb5e1dd5ad6edcc438d7.jpg"}}
+		});
+		!!window.ScriptLazyLoad && window.ScriptLazyLoad.regist({
+			dom:$('.album-list'),
+			loadFunc:function(){
+				list.load();
+				nslog(1258);
+			},
+			distance:500
+		});
+	});
+}();
+!function(){		require.async(["wiki-lemma:widget/lemma_content/mainContent/lemmaReference/lemmaReference.js", "wiki-lemma:widget/lemma_content/mainContent/lemmaReference/lemmaReferenceTip/lemmaReferenceTip.js"],function(Reference,ReferenceTip){
+			new Reference({
+				subLemmaId:"12020926"
+			});
+			new ReferenceTip({
+				subLemmaId:"12020926"
+			});
+		});
+	}();
+!function(){        require.async("wiki-common:widget/lib/jquery/jquery.js",function($){
+            function openTagToggle(node) {
+                if ($(node).hasClass("collapse")) {
+                    $(node).removeClass("collapse");
+                    $("#open-tag").css("height", '22px');
+                } else {
+                    $(node).addClass("collapse");
+                    $("#open-tag").css("height", $("#open-tag-item").css("height"));
+                }
+            }
+            if (parseInt($("#open-tag-item").css("height")) <= 30) {
+                $('#open-tag-collapse').hide();
+            }
+            $("#open-tag-collapse").on("click", function () {
+                openTagToggle($("#open-tag")[0]);
+            });
+        });
+    }();
+!function(){            require('wiki-lemma:widget/lemma_content/configModule/zhixin/zhixin.js')(13136790, 'DOGE');
+        }();
+!function(){    require.async("wiki-lemma:widget/lemma_content/mainContent/lemmaStatistics/lemmaStatistics.js",function(init){
+        init({
+            newLemmaIdEnc:"62556134e97f614116010ed1"
+        });
+    });
+}();
+!function(){	require.async("wiki-lemma:widget/lemma_content/mainContent/sideCatalog/sideCatalog.js",function(SideCatalog){
+		new SideCatalog();
+	});
+}();
+!function(){        require.async(['wiki-lemma:widget/promotion/unionAdFromPs/unionAdFromPs.js'], function (init) {
+            init();
+        });
+    }();
+!function(){    require.async(["wiki-lemma:widget/promotion/fengchao/fengchao.js", "wiki-lemma:widget/promotion/unionAd/unionAd.js"], function (init, unionAd) {
+        init({
+            newLemmaId: "13136790",
+            lemmaTitle: "DOGE",
+            encodeLemmaTitle: "DOGE"
+        }, {
+            errFn: unionAd,
+            dom: $('.unionAd')
+        });
+    });
+}();
+!function(){        require.async('wiki-lemma:widget/promotion/bottomAd/bottomAd.js', function (init) {
+            init('BOTTOM_PRO_AD');
+        });
+    }();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+    var Dialog = require("wiki-common:widget/ui/dialog/dialog.js");
+    var userLogin = require('wiki-common:widget/component/userLogin/userLogin.js');
+    var unameFiller = require('wiki-common:widget/component/unameFiller/unameFiller.js');
+    var rightCheck = require('wiki-lemma:widget/tools/rightCheck/rightCheck.js');
+
+
+    var editUrl = '/edit/' + encodeURIComponent('DOGE') + '/' + '13136790';
+
+    function gotoEdit(url, isMidNight) {
+        if (isMidNight) {
+            Dialog.alert({
+                title: '编辑提示',
+                subMsg: '晚23:00至次日8:00，因审核系统例行维护，您提交的版本可能需要较长时间才能通过，望您谅解。',
+                onConfirm: function() {
+                    window.location.href = url;
+                }
+            });
+        } else {
+            window.location.href = url;
+        }    
+    }
+
+    $(document.body).on('click', '.j-edit-link', function() {
+        var dl = $(this).attr('data-edit-dl');
+        if (dl) {
+            var url = editUrl + '?dl=' + dl;
+        } else {
+            var url = editUrl;
+        }
+
+        rightCheck.preeditCheck('13136790', 'DOGE', '', '92505537', function(res) {
+            if (res.errno) {
+                switch (res.errno) {
+                    case 100001:
+                        userLogin.showLoginPop();
+                        break;
+                    case 100006: 
+                        unameFiller.show();
+                        break;
+                    case 100005:
+                        alert('对不起，您目前被封禁');
+                        break;
+                    case 110001:
+                        alert('对不起，该词条被锁定');
+                        break;
+                    case 110007:
+                        alert('对不起，消歧页无法编辑');
+                        break;
+                    case 110005:
+                        Dialog.alert({
+                            title: '编辑提示',
+                            mainMsg: '对不起，您暂时没有权限编辑该词条。',
+                            subMsg: '<p>您好，该词条内容已较丰富，现仅对百科等级达到<b>四级</b>且通过率达到<b>85%</b>的科友开放编辑。</p><p>当您通过努力达到以上要求，就可以参与编辑该词条了。</p><p><img src="http://img.baidu.com/img/baike/usercenter/growuptask/star.gif" class="star" />参加<a target="_blank" href="/usercenter#guide">成长任务</a>，更快掌握百科编辑技巧，加速升级！</p>'
+                        });
+                        break;
+                    case 110008:
+                        Dialog.alert({
+                            title: '编辑提示',
+                            mainMsg: '对不起，您暂时没有权限编辑该词条。',
+                            subMsg: '<p>您好，该词条内容已较丰富，现仅对百科等级达到<b>六级</b>且通过率达到<b>85%</b>的科友开放编辑。</p><p>当您通过努力达到以上要求，就可以参与编辑该词条了。</p><p><img src="http://img.baidu.com/img/baike/usercenter/growuptask/star.gif" class="star" />参加<a target="_blank" href="/usercenter#guide">成长任务</a>，更快掌握百科编辑技巧，加速升级！</p>'
+                        });
+                        break;
+                    case 470001:
+                        alert('系统错误，请刷新重试');
+                        break;
+                }
+            } else {
+                if (!res.data.right.noAudit) {
+                    Dialog.alert({
+                        title: '编辑提示',
+                        subMsg: '很抱歉，该词条有其他用户编辑的版本正在提交，您暂时无法编辑。<br/>百科建议您晚些时候再编辑该词条，或者尝试编辑其他的词条。'
+                    });
+                    return;
+                }
+                gotoEdit(url, res.data.notice.isMidNight);
+            }
+        });
+    });
+}();
+!function(){    require.async("wiki-lemma:widget/tools/searchHeader/toolButtons/toolButtons.js",function(init){
+        init({
+            newLemmaId:"13136790",
+            lemmaId:"11663024",
+            subLemmaId:"12020926"
+        });
+    });
+}();
+!function(){    require('wiki-lemma:widget/tools/searchHeader/toolButtons/userInfo.js')();
+}();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js'),
+      animation = require('wiki-common:widget/util/animation.js'),
+      initSearchbar = require('wiki-common:widget/component/searchbar/searchbar.js');
+
+    var isFadeIn = false,
+        isFadeOut = false;
+
+    var fadeInAni, fadeOutAni;
+
+    $(window).on('scroll', function(e) {
+        var scrollTop = $(this).scrollTop();
+
+        if (scrollTop > 200 && !isFadeIn && $('.lemmaWgt-searchHeader').css('display') == 'none') {
+            fadeOutAni && fadeOutAni.stop();
+            fadeInAni = animation({
+                duration: 200,
+                easing: 'linear',
+                onStart: function() {
+                    isFadeOut = false;
+                    isFadeIn = true;
+                    $('.lemmaWgt-searchHeader').css('display', 'block');
+                },
+                onStep: function(progress) {
+                    $('.lemmaWgt-searchHeader').css('opacity', progress)
+                },
+                onComplete: function(progress) {
+                    isFadeIn = false;
+                }
+            });
+        } else if (scrollTop <= 200 && !isFadeOut && $('.lemmaWgt-searchHeader').css('display') == 'block') {
+            fadeInAni && fadeInAni.stop();
+            fadeOutAni = animation({
+                duration: 300,
+                easing: 'linear',
+                onStart: function() {
+                    $('.lemmaWgt-searchHeader #suggestion').hide();
+                    isFadeIn = false;
+                    isFadeOut = true;
+                },
+                onStep: function(progress) {
+                    $('.lemmaWgt-searchHeader').css('opacity', 1 - progress);
+                },
+                onComplete: function(progress) {
+                    isFadeOut = false;
+                    $('.lemmaWgt-searchHeader').css('display', 'none');
+                }
+            });
+        }
+    });
+
+    initSearchbar($('.lemmaWgt-searchHeader'));
+}();
+!function(){	!!window.BKShare && window.BKShare.regist({
+		"tag" : "side-share",
+		"bdSize" : 32,
+		"bdMini":1,
+		"bdPopupOffsetLeft":-72
+	});
+}();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+    var nslog = require("wiki-common:widget/component/nslog/nslog.js");
+
+    require.async("wiki-lemma:widget/tools/lazyLoad/lazyLoad.js", function(LazyLoad) {
+        new LazyLoad();
+    });
+
+    require.async(['wiki-common:widget/component/nslog/nslog.js', 'wiki-common:widget/lib/jquery/jquery.js'], function(nslog, $) {
+        nslog().setGlobal({
+            lemmaId: "11663024",
+            newLemmaId: "13136790",
+            subLemmaId: "12020926",
+            lemmaTitle: "DOGE"
+        });
+        
+        // 词条页 pv
+        nslog(9322);
+
+        // 链接点击 pv
+        var lemmaPageRegExp = new RegExp(/\/subview\/\d+|\/view\/\d+|\/item\//i); 
+        $('body').on('mousedown', 'a', function() {
+            var href = $(this).attr('href');
+            if (href && href.indexOf('/') >= 0 && href.indexOf('#') !== 0) {
+                // 链接点击 pv
+                nslog(10000001);
+                if (lemmaPageRegExp.test(href)) {
+                    // 词条页链接点击 pv
+                    nslog(10000002);
+                }
+            }
+        });
+    });
+
+    // 广告接入 wikiad 统一加载
+    nslog(10002298);
+    $.getJSON('/api/wikiad/getsquirrels?lemmaId=' + 13136790, function(res) {
+        if (!res.errno) {
+            if (res.data[5]) {
+                require.async(['wiki-lemma:widget/promotion/rightPreciseAd/rightPreciseAd.js'], function(rightPreciseAd) {
+                    rightPreciseAd(res.data[5]);
+                    nslog(10002201, location.href, {
+                        adId: res.data[5][0].adId,
+                        adTitle: res.data[5][0].name,
+                        adPos: 5
+                    });
+                });
+            } else if (res.data[1]) {
+                require.async(['wiki-lemma:widget/promotion/vbaike/vbaike.js'], function(vbaike) {
+                    vbaike(res.data[1]);
+                    for(var i in res.data[1]) {
+                        nslog(10002201, location.href, {
+                            adId: res.data[1][i].adId,
+                            adTitle: res.data[1][i].name,
+                            adPos: 1
+                        });
+                    }
+                });
+            }
+            if (res.data[9]) {
+                require.async(['wiki-lemma:widget/promotion/rightBigAd/rightBigAd.js'], function(rightBigAd) {
+                    rightBigAd(res.data[9]);
+                        nslog(10002201, location.href, {
+                            adId: res.data[9][0].adId,
+                            adTitle: res.data[9][0].name,
+                            adPos: 9
+                        });  
+                });
+            }else if(res.data[2]) {
+                require.async(['wiki-lemma:widget/promotion/slide/slide.js'], function(slide) {
+                    slide(res.data[2]);
+                    for(var i in res.data[2]) {
+                        nslog(10002201, location.href, {
+                            adId: res.data[2][i].adId,
+                            adTitle: res.data[2][i].name,
+                            adPos: 2
+                        });
+                    }
+                });
+            }
+            if (res.data[3]) {
+                require.async(['wiki-lemma:widget/promotion/topAd/topAd.js'], function(topAd) {
+                    topAd(res.data[3]);
+                    nslog(10002201, location.href, {
+                        adId: res.data[3][0].adId,
+                        adTitle: res.data[3][0].name,
+                        adPos: 3
+                    });
+                });
+            }
+            if (res.data[4]) {
+                require.async(['wiki-lemma:widget/promotion/rightAd/rightAd.js'], function(rightAd) {
+                    rightAd(res.data[4]);
+                    nslog(10002201, location.href, {
+                        adId: res.data[4][0].adId,
+                        adTitle: res.data[4][0].name,
+                        adPos: 4
+                    });
+                });
+            }
+        }
+    });
+
+    // 设置分享内容
+    window.BKShare.setCommon({
+        bdText: '【DOGE_百度百科】Doge源于一个名叫Homestar Runner的网上动画系列，在这个动画中，狗被称为“doge”。.....（分享自@百度百科）',
+        bdDesc: '',
+        bdUrl: 'http:\/\/baike.baidu.com\/subview\/11663024\/12020926.htm',
+        bdPic: ''
+    });
+
+    // 底部投诉带入当前页面 url
+    var map = [1, 2, 4, 3];
+    $('.wgt-footer-main .suggestion').find('a').each(function(i) {
+        $(this).attr('href', 'http://tousu.baidu.com/baike/add?word=DOGE' + '&&submit_link=' + encodeURIComponent(window.location.href) + '#' + map[i]);
+    });
+}();
+!function(){      require('wiki-common:widget/component/psLink/psLink.js');
+    }();</script>
+
+
+
+</html>
